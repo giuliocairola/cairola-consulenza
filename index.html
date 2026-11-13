@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cairola Consulenza — Vendite e automazione per negozi e piccoli e-commerce</title>
+  <meta name="description" content="Aiuto i negozi specializzati e i piccoli e-commerce, in tutta Italia, a gestire meglio risposte, preventivi e vendite, anche con l'AI. Lavoro a distanza, con videocall, email e telefono.">
+  <meta name="theme-color" content="#17181c">
+  <style>
+    :root {
+      --bg: #17181c;
+      --bg-alt: #202229;
+      --paper: #24262c;
+      --ink: #f3efe9;
+      --muted: #c9c3b8;
+      --line: #3c3e45;
+      --accent: #d4a090;
+      --accent-hover: #e0b09c;
+      --btn: #a85a45;
+      --btn-hover: #9d5340;
+      --radius: 12px;
+      --max: 1080px;
+      --text: 1.0625rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html { color-scheme: dark; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+      font-size: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--btn);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      z-index: 100;
+    }
+    .skip:focus { left: 0.5rem; top: 0.5rem; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(23, 24, 28, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    .header-inner, .wrap {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 4rem;
+      padding: 0.6rem 0;
+    }
+
+    .brand {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .brand:hover { color: var(--accent); }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.35rem 0.9rem;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    nav a:hover, nav a:focus { color: var(--ink); }
+
+    .btn {
+      display: inline-block;
+      background: var(--btn);
+      color: #fff !important;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem 1.15rem;
+      border-radius: 8px;
+      line-height: 1.3;
+    }
+    .btn:hover, .btn:focus { background: var(--btn-hover); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent) !important;
+      border: 1px solid var(--accent);
+    }
+    .btn-secondary:hover, .btn-secondary:focus {
+      background: var(--btn);
+      color: #fff !important;
+      border-color: var(--btn);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+
+    section { padding: 3.4rem 0; }
+    section + section { border-top: 1px solid var(--line); }
+    #apertura { padding-top: 3.2rem; padding-bottom: 3.6rem; }
+    #contatti { padding-bottom: 3.8rem; }
+
+    .kicker {
+      margin: 0 0 0.7rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.25; margin: 0 0 0.8rem; font-weight: 700; }
+    h1 { font-size: clamp(1.85rem, 4vw, 2.6rem); max-width: 18ch; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+    h3 { font-size: 1.1rem; }
+    p { margin: 0 0 0.9rem; max-width: 42rem; }
+    p.lead { font-size: 1.15rem; max-width: 36rem; color: var(--ink); }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.2rem 1.3rem;
+    }
+    .card p:last-child, .offer p:last-child { margin-bottom: 0; }
+    .card h3 { margin-bottom: 0.4rem; }
+
+    .offer {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.2rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      height: 100%;
+    }
+    .offer .price {
+      margin: 0.2rem 0 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .offer .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .offer.featured { border-color: var(--accent); }
+
+    .who {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1.6rem;
+      align-items: start;
+    }
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px dashed #7a746c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .photo-placeholder strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.4rem;
+      overflow-wrap: normal;
+      word-break: normal;
+      padding: 0 0.35rem;
+    }
+
+    .contacts {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.2rem;
+      margin-top: 1.3rem;
+      align-items: start;
+    }
+    .placeholder-line {
+      background: var(--bg-alt);
+      border: 1px dashed #7a746c;
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9rem;
+      word-break: break-word;
+    }
+    .placeholder-line a { color: var(--ink); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.3rem 0 1.8rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    footer p { margin: 0; }
+
+    @media (max-width: 800px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .header-inner { flex-direction: column; align-items: flex-start; min-height: 0; gap: 0.45rem; }
+      nav { justify-content: flex-start; gap: 0.2rem 0.7rem; width: 100%; }
+      nav a { font-size: 0.8rem; }
+      section { padding: 2.4rem 0; }
+      #apertura { padding-top: 2.2rem; }
+      .grid-2, .grid-3, .grid-4, .who, .contacts { grid-template-columns: 1fr; }
+      .photo-placeholder { max-width: 240px; margin: 0 auto; }
+      .who { justify-items: center; }
+      .who > div:last-child { justify-self: stretch; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#apertura">Vai al contenuto</a>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="#apertura">Cairola Consulenza</a>
+      <nav aria-label="Sezioni">
+        <a href="#per-chi">Per chi</a>
+        <a href="#problemi">Problemi</a>
+        <a href="#come-lavoro">Come lavoro</a>
+        <a href="#offerta">Offerta</a>
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="apertura">
+      <div class="wrap">
+        <p class="kicker">Consulenza a distanza, in tutta Italia</p>
+        <h1>Cairola Consulenza</h1>
+        <p class="lead">Aiuto i negozi specializzati e i piccoli e-commerce a gestire meglio risposte, preventivi e vendite, anche con l'AI.</p>
+        <p>Lavoro a distanza, con videocall, email e telefono.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:cairolaconsulenza@gmail.com?subject=Mini-audit">Prenota un mini-audit online</a>
+          <a class="btn-secondary btn" href="#offerta">Vedi l'offerta</a>
+        </div>
+        <p style="margin-top:1rem;color:var(--muted);font-size:0.95rem;">Per i primi tre clienti il mini-audit di 45-60 minuti è gratuito.</p>
+      </div>
+    </section>
+
+    <section id="per-chi">
+      <div class="wrap">
+        <p class="kicker">Per chi</p>
+        <h2>Negozi, piccoli e-commerce e poi ristorazione</h2>
+        <p>Lavoro prima con negozi specializzati e piccoli e-commerce, in tutta Italia.</p>
+        <p>Poi con ristoranti e locali che ricevono molte richieste di prenotazione o preventivo.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Priorità 1</h3>
+            <p>Negozi specializzati e piccoli e-commerce che ricevono ogni giorno le stesse domande e devono gestire preventivi, ordini e follow-up.</p>
+          </article>
+          <article class="card">
+            <h3>Priorità 2</h3>
+            <p>Ristoranti e locali con molte richieste di prenotazione o preventivo, anche da clienti che scrivono in italiano, francese o inglese.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="problemi">
+      <div class="wrap">
+        <p class="kicker">Problemi che affronto</p>
+        <h2>Si perde tempo sulle stesse richieste</h2>
+        <p>Le stesse domande arrivano ogni giorno su WhatsApp, Instagram ed email.</p>
+        <p>Preventivi e follow-up restano indietro. Si perde tempo, e qualche cliente aspetta troppo.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Messaggi che si accumulano</h3>
+            <p>Taglie, disponibilità, spedizioni, orari e tempi di consegna. Intanto si è in negozio, o si preparano gli ordini.</p>
+          </article>
+          <article class="card">
+            <h3>Richieste lasciate a metà</h3>
+            <p>Un preventivo o una prenotazione arrivano, ma la risposta parte in ritardo. Il cliente aspetta, e a volte scrive altrove.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="come-lavoro">
+      <div class="wrap">
+        <p class="kicker">Come lavoro</p>
+        <h2>Pochi interventi, chiari e concreti</h2>
+        <p>Prima capisco come lavorate. Poi propongo pochi interventi concreti, non un pacchetto uguale per tutti.</p>
+        <p>Lavoro solo a distanza, con videocall, email e telefono.</p>
+        <p>Gli eventuali costi mensili degli strumenti li paga il cliente.</p>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Videocall</h3>
+            <p>Il mini-audit e il lavoro insieme si fanno in videocall.</p>
+          </article>
+          <article class="card">
+            <h3>Email</h3>
+            <p>Per inviare materiali e restare in contatto tra una chiamata e l'altra.</p>
+          </article>
+          <article class="card">
+            <h3>Telefono</h3>
+            <p>Per le domande rapide, quando una chiamata è più semplice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="offerta">
+      <div class="wrap">
+        <p class="kicker">Offerta</p>
+        <h2>Si parte da un mini-audit gratuito</h2>
+        <p>Un incontro senza impegno, per i primi tre clienti. Poi scegliete se andare avanti con un piano scritto, un'automazione, o entrambi.</p>
+        <div class="grid-4">
+          <article class="offer featured">
+            <h3>Mini-audit gratuito</h3>
+            <p class="price">0 €</p>
+            <p>Solo per i primi 3 clienti. 45-60 minuti in videochiamata o, se serve, al telefono. Usciamo con tre priorità concrete e una pagina di sintesi, inviata per email entro 48 ore. Nessuna automazione attiva e nessun accesso ai vostri account.</p>
+          </article>
+          <article class="offer">
+            <h3>Audit e piano</h3>
+            <p class="price">190 €</p>
+            <p>Una tantum. Approfondisco il processo scelto e vi invio un piano scritto: priorità, strumento consigliato, tempi e cosa non automatizzare. Se arrivate dal mini-audit, il lavoro già fatto non si ripete. Piano inviato entro 5 giorni lavorativi.</p>
+          </article>
+          <article class="offer">
+            <h3>Setup di un'automazione</h3>
+            <p class="price">390 €</p>
+            <p>Una automazione semplice messa in funzione (risposte, follow-up o recensioni). Include istruzioni scritte, una formazione di 60 minuti e 14 giorni di piccole correzioni dopo l'avvio. Quanto costruito resta sul vostro account. Consegna in 14 giorni lavorativi da brief e accessi.</p>
+            <p class="note">Per i primi incarichi: 240 €, in cambio di un caso studio, con permesso scritto (con o senza il vostro nome).</p>
+          </article>
+          <article class="offer">
+            <h3>Assistenza</h3>
+            <p class="price">120 € al mese</p>
+            <p>Si attiva dopo un setup. Controllo che l'automazione resti in funzione, piccole correzioni, supporto via email o WhatsApp nei giorni feriali e una breve call mensile, se serve. Fino a 2 ore al mese, per almeno 3 mesi.</p>
+          </article>
+        </div>
+        <p style="margin-top:1.1rem;color:var(--muted);font-size:0.92rem;max-width:42rem;">I prezzi sono in euro, da prestazione occasionale. Il regime fiscale è da confermare con un commercialista. Questa pagina non è una fattura e non è un parere fiscale.</p>
+      </div>
+    </section>
+
+    <section id="chi-sono">
+      <div class="wrap">
+        <p class="kicker">Chi sono</p>
+        <h2>Giulio Cairola</h2>
+        <div>
+            <p>Studio Business Creation &amp; Entrepreneurship a H-FARM College. Prima ho frequentato Economia Aziendale.</p>
+            <p>Sono cresciuto a Parigi, Pechino e Rabat. Parlo italiano, francese e inglese.</p>
+            <p>Per quattro anni ho gestito un'attività di rivendita di sneaker: ho imparato a scrivere schede prodotto, rispondere ai clienti e stare attento ai numeri.</p>
+            <p>Ho lavorato con Carlo Ratti Associati, Aste Bolaffi e Del Cambio. Mi sono occupato di marketing e community per Buena Vibra. Oggi collaboro anche con Lumina Consulting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="wrap">
+        <p class="kicker">Contatti</p>
+        <h2>Prenota il mini-audit online</h2>
+        <p>Il colloquio dura 45-60 minuti e si fa in videocall. Per i primi tre clienti è gratuito.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:cairolaconsulenza@gmail.com?subject=Mini-audit">Apri il modulo di richiesta</a>
+        </div>
+        <p style="margin-top:1.1rem;">Puoi anche scrivermi su LinkedIn, oppure via email: <a href="mailto:cairolaconsulenza@gmail.com">cairolaconsulenza@gmail.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Cairola Consulenza — Giulio Cairola</p>
+      <p>Consulenza a distanza, in tutta Italia</p>
+    </div>
+  </footer>
+</body>
+</html>
